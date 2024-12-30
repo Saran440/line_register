@@ -27,17 +27,14 @@
       //   headers: {
       //     'Content-Type': 'application/json'
       //   },
-      const response = axios({
-        method: 'post',
-        url: `https://cef7-184-22-103-158.ngrok-free.app/test`,
+      const response = await axios.post('https://cef7-184-22-103-158.ngrok-free.app/test', {
+        email: email,
+        accessToken: accessToken
+      }, {
         headers: {
           'Content-Type': 'application/json'
-        },
-        data: {
-          accessToken: accessToken,
-          email: email
         }
-      })
+      });
       //   body: JSON.stringify({ email: email, accessToken: accessToken })
       // });
 
