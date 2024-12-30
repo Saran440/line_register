@@ -50,7 +50,7 @@
       const emailValue = document.getElementById("emailInput").value;
       const accessToken = liff.getAccessToken();
       try {
-        const res = await fetch("https://cef7-184-22-103-158.ngrok-free.app", {
+        const res = await fetch("https://cef7-184-22-103-158.ngrok-free.app/test", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: emailValue, accessToken })
