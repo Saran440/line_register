@@ -17,8 +17,9 @@
     async function sendEmail() {
       const email = document.getElementById("email").value;
       const accessToken = liff.getAccessToken();
+      console.log("test ->", email, accessToken);
 
-      const response = await fetch('http://localhost:15069/test', {
+      const response = await fetch('https://cef7-184-22-103-158.ngrok-free.app/test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
