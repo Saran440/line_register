@@ -46,6 +46,26 @@
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
+    // function sendEmail() {
+    //   const emailValue = document.getElementById("emailInput").value;
+    //   const accessToken = liff.getAccessToken();
+    //   try {
+    //     const res = fetch("https://cef7-184-22-103-158.ngrok-free.app/test", {
+    //       method: "POST",
+    //       headers: { "Content-Type": "application/json" },
+    //       body: JSON.stringify({ email: emailValue, accessToken })
+    //     });
+    //     if (res.ok) {
+    //       alert("Email sent!");
+    //     } else {
+    //       alert("Error: " + res.status);
+    //     }
+    //   } catch (err) {
+    //     console.error(err);
+    //     alert("Error sending email.");
+    //   }
+    // }
+
     function createUniversalLink() {
       const link1 = liff.permanentLink.createUrl()
       document.getElementById("universalLink1").append(link1)
@@ -96,16 +116,15 @@
     }
 
     async function sendMsg() {
+      const emailValue = document.getElementById("emailInput").value;
       if (liff.getContext().type !== "none") {
         await liff.sendMessages([
           {
             "type": "text",
-            "text": "Hello, World!"
-            // "stickerId": 1,
-            // "packageId": 1
+            "text": emailValue,
           }
         ])
-        alert("Message sent")
+        alert("Message sent: ", emailValue)
       }
     }
 
