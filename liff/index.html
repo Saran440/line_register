@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
   <title>My LIFF App</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <p id="userId"><b>userId:</b> </p>
@@ -14,18 +15,31 @@
   <button id="btnSendEmail" onclick="sendEmail()">Send Email</button>
 
   <script>
+    const axios = require('axios');
+
     async function sendEmail() {
       const email = document.getElementById("email").value;
       const accessToken = liff.getAccessToken();
       console.log("test ->", email, accessToken);
 
-      const response = await fetch('https://cef7-184-22-103-158.ngrok-free.app/test', {
-        method: 'POST',
+      // const response = await fetch('https://cef7-184-22-103-158.ngrok-free.app/test', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      const response = axios({
+        method: 'post',
+        url: `https://cef7-184-22-103-158.ngrok-free.app/test`,
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email: email, accessToken: accessToken })
-      });
+        data: {
+          accessToken: accessToken,
+          email: email
+        }
+      })
+      //   body: JSON.stringify({ email: email, accessToken: accessToken })
+      // });
 
       if (response.ok) {
         alert('Email sent successfully');
