@@ -6,48 +6,35 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- <form action="/action_page.php">
-    <label for="email">Enter your email:</label>
-    <input type="email" id="email" name="email">
-    <input type="submit">
-  </form> -->
-  <p id="os"><b>OS:</b> </p>
-  <p id="language"><b>Language:</b> </p>
-  <p id="version"><b>Version:</b> </p>
-  <p id="isInClient"><b>isInClient:</b> </p>
-  <p id="accessToken"><b>AccessToken:</b> </p>
-  <img id="pictureUrl">
   <p id="userId"><b>userId:</b> </p>
   <p id="displayName"><b>displayName:</b> </p>
-  <p id="statusMessage"><b>statusMessage:</b> </p>
-  <p id="decodedIDToken"><b>email:</b> </p>
-  <p id="type"><b>type:</b> </p>
-  <p id="viewType"><b>viewType:</b> </p>
-  <p id="utouId"><b>utouId:</b> </p>
-  <p id="roomId"><b>roomId:</b> </p>
-  <p id="groupId"><b>groupId:</b> </p>
-  <p id="friendship"><b>isFriendship:</b> </p>
-  <p id="scanCode"><b>Code:</b> </p>
-  <p id="isLoggedIn"><b>isLoggedIn:</b> </p>
-  <!-- <p id="universalLink1"><b>Universal Link:</b> </p>
-  <p id="universalLink2"><b>Universal Link with Query params:</b> </p> -->
-  <p><a href="liff/path/?param=9">Link to Path</a></p>
 
   <label for="email">Enter your email:</label>
   <input type="email" id="email" name="email">
+  <button id="btnSendEmail" onclick="sendEmail()">Send Email</button>
 
-  <button id="btnMsg" onclick="sendMsg()">Send Message</button>
-  <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
-  <button onclick="openWindow()">Open Window</button>
-  <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
-  <button id="btnLogOut" onclick="logOut()">Log Out</button>
-  <button id="btnClose" onclick="closed()">Close</button>
-
-  <script src="js/vconsole.min.js"></script>
   <script>
-    var vConsole = new VConsole()
-    console.log("Hello World!")
+    async function sendEmail() {
+      const email = document.getElementById("email").value;
+      const accessToken = liff.getAccessToken();
+
+      const response = await fetch('http://localhost:15069/test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email, accessToken: accessToken })
+      });
+
+      if (response.ok) {
+        alert('Email sent successfully');
+      } else {
+        alert('Failed to send email');
+      }
+    }
   </script>
+  <button id="btnMsg" onclick="sendMsg()">Send Message</button>
+  <button onclick="openWindow()">Open Window</button>
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
@@ -59,29 +46,6 @@
     //   const link2 = liff.permanentLink.createUrl()
     //   document.getElementById("universalLink2").append(link2)
     // }
-
-    async function shareMsg() {
-      await liff.shareTargetPicker([
-        {
-          type: "text",
-          text: "This message was sent by ShareTargetPicker"
-        }
-      ])
-    }
-
-    function logOut() {
-      liff.logout()
-      window.location.reload()
-    }
-
-    function closed() {
-      liff.closeWindow()
-    }
-
-    async function scanCode() {
-      const result = await liff.scanCode()
-      document.getElementById("scanCode").append(result.value)
-    }
     
     function openWindow() {
       liff.openWindow({
