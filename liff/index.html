@@ -12,10 +12,8 @@
   <p id="decodedIDToken"><b>email:</b> </p>
 
   <input type="email" id="emailInput" placeholder="Enter your email" />
-  <button onclick="sendEmail()">Send Email</button>
 
   <button id="btnMsg" onclick="sendMsg()">Send Message</button>
-  <button id="btnLogOut" onclick="logOut()">Log Out</button>
   <button id="btnClose" onclick="closed()">Close</button>
 
   <script src="js/vconsole.min.js"></script>
@@ -26,31 +24,6 @@
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
-    // function sendEmail() {
-    //   const emailValue = document.getElementById("emailInput").value;
-    //   const accessToken = liff.getAccessToken();
-    //   try {
-    //     const res = fetch("https://cef7-184-22-103-158.ngrok-free.app/test", {
-    //       method: "POST",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify({ email: emailValue, accessToken })
-    //     });
-    //     if (res.ok) {
-    //       alert("Email sent!");
-    //     } else {
-    //       alert("Error: " + res.status);
-    //     }
-    //   } catch (err) {
-    //     console.error(err);
-    //     alert("Error sending email.");
-    //   }
-    // }
-
-    function logOut() {
-      liff.logout()
-      window.location.reload()
-    }
-
     function closed() {
       liff.closeWindow()
     }
