@@ -44,10 +44,10 @@
         await liff.sendMessages([
           {
             "type": "text",
-            "text": emailValue,
+            "text": "/register " + emailValue,
           }
         ])
-        alert("Message sent: ", emailValue)
+        liff.closeWindow()
       }
     }
 
