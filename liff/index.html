@@ -28,8 +28,6 @@
               liff.login();
               return;
           }
-          
-          console.log(liff.getContext());
         }
         main()
 
@@ -39,18 +37,13 @@
           const email = document.getElementById('email').value;
           
           try {
-              const context = liff.getContext();
-              if (context && context.type !== "none") {
-                  await liff.sendMessages([
-                      {
-                          "type": "text",
-                          "text": "/register " + email,
-                      }
-                  ]);
-                  liff.closeWindow();
-              } else {
-                  alert("ต้องเปิดใน LINE เท่านั้น");
-              }
+            await liff.sendMessages([
+                {
+                    "type": "text",
+                    "text": "/register " + email,
+                }
+            ]);
+            liff.closeWindow();
           } catch (error) {
               console.error("Error:", error);
               alert("เกิดข้อผิดพลาดในการส่งข้อความ: ", error);
