@@ -37,11 +37,6 @@
           try {
               if (!liff.isInClient()) {
                   alert("กรุณาเปิดหน้านี้ใน LINE");
-                  liff.openWindow({
-                      // url: window.location.href,
-                      url: "https://liff.line.me/1653725799-4eLBW0WG",
-                      external: false
-                  });
                   return;
               }
 
@@ -57,18 +52,6 @@
               console.error("Error:", error);
               alert("เกิดข้อผิดพลาด: " + error.message);
           }
-          // try {
-          //   await liff.sendMessages([
-          //       {
-          //           "type": "text",
-          //           "text": "/register " + email,
-          //       }
-          //   ]);
-          //   liff.closeWindow();
-          // } catch (error) {
-          //     console.error("Error:", error);
-          //     alert("เกิดข้อผิดพลาดในการส่งข้อความ: ", error);
-          // }
         });
     </script>
 </body>
