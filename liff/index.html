@@ -22,7 +22,7 @@
     <script>
         async function main() {
           // TODO: Move liff id to private
-          await liff.init({ liffId: "1653725799-4eLBW0WG", withLoginOnExternalBrowser: true });
+          await liff.init({ liffId: "1653725799-4eLBW0WG" });
 
           if (!liff.isLoggedIn()) {
               liff.login();
@@ -39,7 +39,8 @@
               if (!liff.isInClient()) {
                   alert("กรุณาเปิดหน้านี้ใน LINE");
                   liff.openWindow({
-                      url: window.location.href,
+                      // url: window.location.href,
+                      url: "https://liff.line.me/1653725799-4eLBW0WG",
                       external: false
                   });
                   return;
