@@ -35,19 +35,40 @@
           event.preventDefault();
 
           const email = document.getElementById('email').value;
-          
           try {
-            await liff.sendMessages([
-                {
-                    "type": "text",
-                    "text": "/register " + email,
-                }
-            ]);
-            liff.closeWindow();
+              if (!liff.isInClient()) {
+                  alert("กรุณาเปิดหน้านี้ใน LINE");
+                  liff.openWindow({
+                      url: window.location.href,
+                      external: false
+                  });
+                  return;
+              }
+
+              await liff.sendMessages([
+                  {
+                      "type": "text",
+                      "text": "/register " + email,
+                  }
+              ]);
+              alert("ส่งข้อความสำเร็จ");
+              liff.closeWindow();
           } catch (error) {
               console.error("Error:", error);
-              alert("เกิดข้อผิดพลาดในการส่งข้อความ: ", error);
+              alert("เกิดข้อผิดพลาด: " + error.message);
           }
+          // try {
+          //   await liff.sendMessages([
+          //       {
+          //           "type": "text",
+          //           "text": "/register " + email,
+          //       }
+          //   ]);
+          //   liff.closeWindow();
+          // } catch (error) {
+          //     console.error("Error:", error);
+          //     alert("เกิดข้อผิดพลาดในการส่งข้อความ: ", error);
+          // }
         });
     </script>
 </body>
